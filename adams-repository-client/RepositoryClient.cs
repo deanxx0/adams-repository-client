@@ -48,7 +48,26 @@ namespace adams_repository_client
                 {
                     Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
                 }
+                return null;
+            }
+        }
 
+        public async Task<Project> GetProjectAsync(string projectId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = _baseUri;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+                var httpResponse = await client.GetAsync($"/projects/{projectId}");
+                if (httpResponse.Content is object && httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    var convert = new ResponseConverter<Project>(httpResponse.Content);
+                    return convert.Convert();
+                }
+                else
+                {
+                    Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
+                }
                 return null;
             }
         }

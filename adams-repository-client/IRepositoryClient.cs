@@ -11,5 +11,6 @@ namespace adams_repository_client
     {
         Task<bool> LoginAsync(string username, string password);
         Task<List<Project>> GetProjectsAsync();
+        Task<Project> GetProjectAsync(string projectId);
     }
 }
