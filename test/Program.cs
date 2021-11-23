@@ -11,6 +11,7 @@ namespace test
             repositoryClient.LoginAsync("u1", "123").Wait();
 
             var projects = repositoryClient.GetProjectsAsync().Result;
+
         }
     }
 }

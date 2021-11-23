@@ -25,9 +25,9 @@ namespace adams_repository_client
             using (var client = new HttpClient())
             {
                 client.BaseAddress = _baseUri;
-                var result = await client.PostAsync($"/login/{username}/{password}", null);
-                string resultContent = await result.Content.ReadAsStringAsync();
-                _token = resultContent;
+                var httpResponse = await client.PostAsync($"/login/{username}/{password}", null);
+                string httpResponseContent = await httpResponse.Content.ReadAsStringAsync();
+                _token = httpResponseContent;
                 return true;
             }
         }
@@ -38,9 +38,7 @@ namespace adams_repository_client
             {
                 client.BaseAddress = _baseUri;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
-
                 var httpResponse = await client.GetAsync($"/projects");
-
                 if (httpResponse.Content is object && httpResponse.Content.Headers.ContentType.MediaType == "application/json")
                 {
                     var convert = new ResponseConverter<List<Project>>(httpResponse.Content);
