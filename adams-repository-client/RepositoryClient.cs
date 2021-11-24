@@ -51,10 +51,39 @@ namespace adams_repository_client
             //}
         }
 
+        public async Task<Project> CreateProjectAsync(CreateProjectModel createProjectModel)
+        {
+            using (var response = await _httpClient.PostAsJsonAsync($"/projects", createProjectModel))
+            {
+                if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    var convert = new ResponseConverter<Project>(response.Content);
+                    return convert.Convert();
+                }
+                else
+                {
+                    Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
+                }
+                return null;
+            }
+        }
+
         public async Task<List<Project>> GetProjectsAsync()
         {
             var projects = await _httpClient.GetFromJsonAsync<List<Project>>($"/projects");
             return projects;
+
+            //var httpResponse = await _httpClient.GetAsync($"/projects");
+            //if (httpResponse.Content is object && httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+            //{
+            //    var convert = new ResponseConverter<List<Project>>(httpResponse.Content);
+            //    return convert.Convert();
+            //}
+            //else
+            //{
+            //    Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
+            //}
+            //return null;
 
             //using (var client = new HttpClient())
             //{
@@ -97,13 +126,13 @@ namespace adams_repository_client
             //}
         }
 
-        public async Task<Project> CreateProjectAsync(CreateProjectModel createProjectModel)
+        public async Task<InputChannel> CreateChannelAsync(string projectId, CreateChannelModel createChannelModel)
         {
-            using (var response = await _httpClient.PostAsJsonAsync($"http://localhost:5005/projects", createProjectModel))
+            using (var response = await _httpClient.PostAsJsonAsync($"/projects/{projectId}/channels", createChannelModel))
             {
                 if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
                 {
-                    var convert = new ResponseConverter<Project>(response.Content);
+                    var convert = new ResponseConverter<InputChannel>(response.Content);
                     return convert.Convert();
                 }
                 else
@@ -114,6 +143,27 @@ namespace adams_repository_client
             }
         }
 
-        
+        public async Task<List<InputChannel>> GetChannelsAsync(string projectId)
+        {
+            var channels = await _httpClient.GetFromJsonAsync<List<InputChannel>>($"/projects/{projectId}/channels");
+            return channels;
+        }
+
+        public async Task<InputChannel> DeleteChannel(string projectId, string channelId)
+        {
+            using (var response = await _httpClient.DeleteAsync($"projects/{projectId}/channels/{channelId}"))
+            {
+                if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    var convert = new ResponseConverter<InputChannel>(response.Content);
+                    return convert.Convert();
+                }
+                else
+                {
+                    Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
+                }
+                return null;
+            }
+        }
     }
 }
