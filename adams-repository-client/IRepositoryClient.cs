@@ -20,5 +20,8 @@ namespace adams_repository_client
         Task<ClassInfo> CreateClassInfoAsync(string projectId, CreateClassInfoModel createClassInfoModel);
         Task<List<ClassInfo>> GetClassInfosAsync(string projectId);
         Task<ClassInfo> DeleteClassInfoAsync(string projectId, string classInfoId);
+        MetadataKey CreateMetadataKey(string projectId, CreateMetadataKeyModel createMetadataKeyModel);
+        List<MetadataKey> GetMetadataKeys(string projectId);
+        MetadataKey DeleteMetadataKey(string projectId, string metadataKeyId);
     }
 }

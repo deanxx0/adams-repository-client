@@ -35,6 +35,12 @@ namespace test
 
             //var classInfo = repositoryClient.DeleteClassInfoAsync("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "7e97ef8c-0c38-4c34-a57d-2bd9e222580b").Result;
 
+            //var createMetadataKey = new CreateMetadataKeyModel("k1", "kkk", "string");
+            //var metadataKey = repositoryClient.CreateMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", createMetadataKey);
+
+            //var metadataKeys = repositoryClient.GetMetadataKeys("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2");
+
+            var metadataKey = repositoryClient.DeleteMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "0c360525-190e-46ba-8857-6357bd69d653");
         }
     }
 }

@@ -205,5 +205,26 @@ namespace adams_repository_client
                 return null;
             }
         }
+
+        public MetadataKey CreateMetadataKey(string projectId, CreateMetadataKeyModel createMetadataKeyModel)
+        {
+            var httpRequester = new HttpRequester<MetadataKey>(_httpClient);
+            var metadataKey = httpRequester.PostAsync("metadatakeys", projectId, createMetadataKeyModel).Result;
+            return metadataKey;
+        }
+
+        public List<MetadataKey> GetMetadataKeys(string projectId)
+        {
+            var httpRequester = new HttpRequester<MetadataKey>(_httpClient);
+            var metadataKeys = httpRequester.GetListAsync("metadatakeys", projectId).Result;
+            return metadataKeys;
+        }
+
+        public MetadataKey DeleteMetadataKey(string projectId, string metadataKeyId)
+        {
+            var httpRequester = new HttpRequester<MetadataKey>(_httpClient);
+            var metadataKey = httpRequester.DeleteAsync("metadatakeys", projectId, metadataKeyId).Result;
+            return metadataKey;
+        }
     }
 }
