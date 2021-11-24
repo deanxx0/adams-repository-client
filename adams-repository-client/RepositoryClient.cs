@@ -149,13 +149,53 @@ namespace adams_repository_client
             return channels;
         }
 
-        public async Task<InputChannel> DeleteChannel(string projectId, string channelId)
+        public async Task<InputChannel> DeleteChannelAsync(string projectId, string channelId)
         {
             using (var response = await _httpClient.DeleteAsync($"projects/{projectId}/channels/{channelId}"))
             {
                 if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
                 {
                     var convert = new ResponseConverter<InputChannel>(response.Content);
+                    return convert.Convert();
+                }
+                else
+                {
+                    Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
+                }
+                return null;
+            }
+        }
+
+        public async Task<ClassInfo> CreateClassInfoAsync(string projectId, CreateClassInfoModel createClassInfoModel)
+        {
+            using (var response = await _httpClient.PostAsJsonAsync($"/projects/{projectId}/classinfos", createClassInfoModel))
+            {
+                if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    var convert = new ResponseConverter<ClassInfo>(response.Content);
+                    return convert.Convert();
+                }
+                else
+                {
+                    Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
+                }
+                return null;
+            }
+        }
+
+        public async Task<List<ClassInfo>> GetClassInfosAsync(string projectId)
+        {
+            var classInfos = await _httpClient.GetFromJsonAsync<List<ClassInfo>>($"/projects/{projectId}/classinfos");
+            return classInfos;
+        }
+
+        public async Task<ClassInfo> DeleteClassInfoAsync(string projectId, string classInfoId)
+        {
+            using (var response = await _httpClient.DeleteAsync($"projects/{projectId}/classinfos/{classInfoId}"))
+            {
+                if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    var convert = new ResponseConverter<ClassInfo>(response.Content);
                     return convert.Convert();
                 }
                 else

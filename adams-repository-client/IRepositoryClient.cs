@@ -16,6 +16,9 @@ namespace adams_repository_client
         Task<Project> GetProjectAsync(string projectId);
         Task<InputChannel> CreateChannelAsync(string projectId, CreateChannelModel createChannelModel);
         Task<List<InputChannel>> GetChannelsAsync(string projectId);
-        Task<InputChannel> DeleteChannel(string projectId, string channelId);
+        Task<InputChannel> DeleteChannelAsync(string projectId, string channelId);
+        Task<ClassInfo> CreateClassInfoAsync(string projectId, CreateClassInfoModel createClassInfoModel);
+        Task<List<ClassInfo>> GetClassInfosAsync(string projectId);
+        Task<ClassInfo> DeleteClassInfoAsync(string projectId, string classInfoId);
     }
 }
