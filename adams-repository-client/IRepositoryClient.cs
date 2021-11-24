@@ -1,4 +1,5 @@
-﻿using NAVIAIServices.RepositoryService.Entities;
+﻿using adams_repository_service.Models;
+using NAVIAIServices.RepositoryService.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace adams_repository_client
         Task<bool> LoginAsync(string username, string password);
         Task<List<Project>> GetProjectsAsync();
         Task<Project> GetProjectAsync(string projectId);
+        Task<Project> CreateProjectAsync(CreateProjectModel createProjectModel);
     }
 }
