@@ -23,8 +23,6 @@ namespace adams_repository_client.Utils
             {
                 if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
                 {
-                    //var convert = new ResponseConverter<T>(response.Content);
-                    //return convert.Convert();
                     var model = HttpContentJsonExtensions.ReadFromJsonAsync<T>(response.Content).Result;
                     return model;
 
@@ -49,8 +47,6 @@ namespace adams_repository_client.Utils
             {
                 if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
                 {
-                    //var convert = new ResponseConverter<T>(response.Content);
-                    //return convert.Convert();
                     var model = HttpContentJsonExtensions.ReadFromJsonAsync<T>(response.Content).Result;
                     return model;
                 }

@@ -22,8 +22,8 @@ namespace test
             //var createProjectModel = new CreateProjectModel("pp2", "descdesc", NAVIAITypes.Mercury);
             //var project = repositoryClient.CreateProjectAsync(createProjectModel).Result;
 
-            //var createChannelModel = new CreateChannelModel("c1", true, "desdes", "rr");
-            //var channel = repositoryClient.CreateChannelAsync("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", createChannelModel).Result;
+            var createChannelModel = new CreateChannelModel("c23", true, "desdes", "rr");
+            var channel = repositoryClient.CreateChannelAsync("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", createChannelModel).Result;
 
             //var channels = repositoryClient.GetChannelsAsync("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2").Result;
 
@@ -36,12 +36,12 @@ namespace test
 
             //var classInfo = repositoryClient.DeleteClassInfoAsync("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "7e97ef8c-0c38-4c34-a57d-2bd9e222580b").Result;
 
-            //var createMetadataKey = new CreateMetadataKeyModel("k16", "kkk", "string");
+            //var createMetadataKey = new CreateMetadataKeyModel("k20", "kkk", "string");
             //var metadataKey = repositoryClient.CreateMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", createMetadataKey);
 
             //var metadataKeys = repositoryClient.GetMetadataKeys("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2");
 
-            var metadataKey = repositoryClient.DeleteMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "10d30f39-52c8-4d5e-a0e2-799a94cb9043");
+            //var metadataKey = repositoryClient.DeleteMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "10d30f39-52c8-4d5e-a0e2-799a94cb9043");
 
             //Person person = new Person { Id = 1, Name = "nnn" };
             //string jsonPerson = JsonSerializer.Serialize(person);
