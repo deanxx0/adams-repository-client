@@ -3,9 +3,21 @@ using NAVIAIServices.RepositoryService.Entities;
 using NAVIAIServices.RepositoryService.Enums;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace test
 {
+    class Person
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Person()
+        {
+
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -35,12 +47,20 @@ namespace test
 
             //var classInfo = repositoryClient.DeleteClassInfoAsync("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "7e97ef8c-0c38-4c34-a57d-2bd9e222580b").Result;
 
-            //var createMetadataKey = new CreateMetadataKeyModel("k1", "kkk", "string");
-            //var metadataKey = repositoryClient.CreateMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", createMetadataKey);
+            var createMetadataKey = new CreateMetadataKeyModel("k15", "kkk", "string");
+            var metadataKey = repositoryClient.CreateMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", createMetadataKey);
 
             //var metadataKeys = repositoryClient.GetMetadataKeys("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2");
 
-            var metadataKey = repositoryClient.DeleteMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "0c360525-190e-46ba-8857-6357bd69d653");
+            //var metadataKey = repositoryClient.DeleteMetadataKey("4cb5bdd0-3669-4dcf-8d5c-9e2fbd0305f2", "0c360525-190e-46ba-8857-6357bd69d653");
+
+            //Person person = new Person { Id = 1, Name = "nnn" };
+            //string jsonPerson = JsonSerializer.Serialize(person);
+            //Console.WriteLine(jsonPerson);
+            //Console.WriteLine("___________________");
+            //string jsonString = "{\"Id\":1,\"Name\":\"Alex\"}";
+            //var personObj = JsonSerializer.Deserialize<Person>(jsonString);
+            //Console.WriteLine($"{personObj.Id}, {personObj.Name}");
         }
     }
 }
